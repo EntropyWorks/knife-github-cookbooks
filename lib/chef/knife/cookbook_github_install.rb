@@ -116,7 +116,7 @@ class Chef
 
       def clone_cookbook
         shell_out!("rm -rf #{temp_clone_path}", :cwd => tmpdir) if File.exists?(File.join(tmpdir, temp_clone_path))
-        shell_out!("git clone #{github_uri} #{temp_clone_path}", :cwd => tmpdir)
+        shell_out!("git clone --depth 1 #{github_uri} #{temp_clone_path}", :cwd => tmpdir)
         shell_out!("git checkout #{github_branch}", :cwd => File.join(tmpdir, temp_clone_path))
         shell_out!("rm -rf .git", :cwd => File.join(tmpdir, temp_clone_path))
       end
